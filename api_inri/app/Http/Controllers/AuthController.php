@@ -18,7 +18,7 @@ class AuthController extends Controller
             'course' => 'required|string|max:255',
             'occupation' => 'required|string|max:255',
             'contact_number' => 'required|string|max:255',
-            'registerKey' => 'required|max:255|in:inrikey'
+            'register_key' => 'required|max:255|in:inrikey'
         ]);
 
         $user = User::create([
@@ -42,7 +42,7 @@ class AuthController extends Controller
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
-                'message' => 'Invalid login details'
+                'message' => 'Invalid login credentials'
             ], 401);
         }
 
@@ -65,19 +65,27 @@ class AuthController extends Controller
     public function changePassword(Request $request)
     {
         $validatedData = $request->validate([
-            'password' => 'required|string|min:8',
+            'current_password' => 'required|string|min:8',
+            'new_password' => 'required|string|min:8',
         ]);
-        $user = $request->user();
-        $user->password = Hash::make($validatedData['password']);
-        $user->save();
 
-        return response()->json([
-            'message' => 'Password Updated.',
-        ]);
+        $user = $request->user();
+        if (Hash::check($validatedData['current_password'], $user->password)) {
+            $user->password = Hash::make($validatedData['new_password']);
+            $user->save();
+
+            return response()->json([
+                'message' => 'Password Updated.',
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Wrong Password',
+            ], 403);
+        }
     }
 
-    public function logout (Request $request)
-    { 
+    public function logout(Request $request)
+    {
         $request->user()->currentAccessToken()->delete();
         return response()->json([
             'message' => 'Logout success'

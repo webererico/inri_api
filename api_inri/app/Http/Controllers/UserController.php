@@ -28,7 +28,7 @@ class UserController extends Controller
         }
 
         if ($request['course']) {
-            $user->occupation = $request['course'];
+            $user->course = $request['course'];
         }
 
         if ($request['contact_number']) {
