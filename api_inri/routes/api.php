@@ -27,11 +27,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('/change/password', [ AuthController::class, 'changePassword']);
     Route::get('/logout', [AuthController::class, 'logout']);
+    Route::get('/delete', [AuthController::class, 'delete']);
     Route::get('/profile', [UserController::class, 'profile']);
     Route::get('/battery-voltage', [BatteryVoltageController::class, 'index']);
     Route::patch('/profile', [UserController::class, 'store']);
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/admin/users', [AdminController::class, 'index']);
+    
 });
 
 

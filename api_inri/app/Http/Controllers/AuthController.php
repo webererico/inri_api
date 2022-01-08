@@ -91,4 +91,12 @@ class AuthController extends Controller
             'message' => 'Logout success'
         ]);
     }
+
+    public function delete(Request $request) 
+    {
+        $request->user()->delete();
+        return response()->json([
+            'message' => 'Delete success'
+        ]);
+    }
 }
