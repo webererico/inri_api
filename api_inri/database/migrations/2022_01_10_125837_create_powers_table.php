@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBatteryVoltagesTable extends Migration
+class CreatePowersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBatteryVoltagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('battery_voltages', function (Blueprint $table) {
+        Schema::create('powers', function (Blueprint $table) {
             $table->id();
             $table->double('max', 8, 2);
             $table->double('min', 8, 2);
@@ -32,6 +32,6 @@ class CreateBatteryVoltagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('battery_voltages');
+        Schema::dropIfExists('powers');
     }
 }

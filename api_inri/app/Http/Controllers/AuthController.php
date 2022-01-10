@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -31,10 +32,9 @@ class AuthController extends Controller
             'is_admin' => false,
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'access_token' => $token,
+            'message' => 'User Created',
             'token_type' => 'Bearer',
         ]);
     }
@@ -48,7 +48,12 @@ class AuthController extends Controller
 
         $user = User::where('email', $request['email'])->firstOrFail();
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        // $hasToken = DB::table('personal_access_tokens')->where('tokenable_id', '=', $user->id)->latest()->first();
+        // if ($hasToken != null) {
+        //     $token = $hasToken->token->plainTextToken;
+        // } else {
+            $token = $user->createToken('auth_token')->plainTextToken;
+        // }
 
         return response()->json([
             'access_token' => $token,
@@ -92,7 +97,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function delete(Request $request) 
+    public function delete(Request $request)
     {
         $request->user()->delete();
         return response()->json([

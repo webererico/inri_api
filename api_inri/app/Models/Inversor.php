@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BatteryVoltage extends Model
+class Inversor extends Model
 {
     use HasFactory;
+    protected $table = 'inversor_status';
     public $fillable = [
-        'max',
-        'min',
-        'average',
-        'deviation',
-        'count',
         'status'
     ];
+
+    protected $hidden = array('id');
+
 }

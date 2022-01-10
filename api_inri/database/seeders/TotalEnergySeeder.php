@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\BatteryVoltage;
+use App\Models\TotalEnergy;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class BatteryVoltageSeeder extends Seeder
+class TotalEnergySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,11 +15,11 @@ class BatteryVoltageSeeder extends Seeder
     public function run()
     {
         for ($i = 0; $i < 100; $i++) {
-            BatteryVoltage::create([
-                'max' => $i + 10,
-                'min' => $i - 10,
-                'deviation' => $i * 2 / 3,
-                'average' => $i * 3 / 2,
+            TotalEnergy::create([
+                'max' => $i + 30,
+                'min' => $i - 31,
+                'deviation' => $i * 4 / 5,
+                'average' => $i * 5 / 4,
                 'count' => $i,
                 'status' => true
             ]);

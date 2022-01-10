@@ -13,14 +13,14 @@ class BatteryVoltageController extends Controller
         if ($request['start_date'] != null && $request['end_date'] != null) {
             $start = Carbon::parse($request['start_date']);
             $end = Carbon::parse($request['end_date']);
-            $batteryVoltages = BatteryVoltage::whereBetween('created_at', [$start, $end])->get();
+            $data = BatteryVoltage::whereBetween('created_at', [$start, $end])->limit(100)->get();
         } else {
-            $batteryVoltages = BatteryVoltage::all();
+            $data = BatteryVoltage::limit(100)->get();
         }
 
         return response()->json([
-            'data' => $batteryVoltages,
-            'count' => count($batteryVoltages) > 0  ? count($batteryVoltages) : 0
+            'data' => $data,
+            'count' => count($data) > 0  ? count($data) : 0
         ]);
     }
 }
