@@ -15,7 +15,8 @@ class CreateInversosTable extends Migration
     {
         Schema::create('inversor_status', function (Blueprint $table) {
             $table->id();
-            $table->boolean('status');
+            $table->integer('status');
+            $table->string('description');
             $table->timestamps();
         });
     }

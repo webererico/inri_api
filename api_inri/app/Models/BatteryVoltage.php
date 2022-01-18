@@ -14,6 +14,7 @@ class BatteryVoltage extends Model
         'average',
         'deviation',
         'count',
-        'status'
+        'status',
+        'created_at'
     ];
 }

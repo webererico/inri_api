@@ -15,12 +15,13 @@ class WindLateralController extends Controller
      */
     public function index(Request $request)
     {
+        $limit = $request['limit'] ?? 60;
         if ($request['start_date'] != null && $request['end_date'] != null) {
             $start = Carbon::parse($request['start_date']);
             $end = Carbon::parse($request['end_date']);
             $data = WindLateral::whereBetween('created_at', [$start, $end])->get();
         } else {
-            $data = WindLateral::limit(100)->get();
+            $data = WindLateral::all()->take(-$limit);
         }
 
         return response()->json([

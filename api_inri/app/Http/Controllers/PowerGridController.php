@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PowerGrid;
+use App\Models\WeatherStation;
 use Illuminate\Http\Request;
 
-class PowerGridController extends Controller
+class WeatherStationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,7 +44,7 @@ class PowerGridController extends Controller
      * @param  \App\Models\PowerGrid  $powerGrid
      * @return \Illuminate\Http\Response
      */
-    public function show(PowerGrid $powerGrid)
+    public function show(WeatherStation $weatherStation)
     {
         //
     }
@@ -52,10 +52,10 @@ class PowerGridController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PowerGrid  $powerGrid
+     * @param  \App\Models\WeatherStation  $WeatherStation
      * @return \Illuminate\Http\Response
      */
-    public function edit(PowerGrid $powerGrid)
+    public function edit(WeatherStation $weatherStation)
     {
         //
     }
@@ -64,10 +64,10 @@ class PowerGridController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PowerGrid  $powerGrid
+     * @param  \App\Models\WeatherStation  $WeatherStation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PowerGrid $powerGrid)
+    public function update(Request $request, WeatherStation $weatherStation)
     {
         //
     }
@@ -75,10 +75,10 @@ class PowerGridController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PowerGrid  $powerGrid
+     * @param  \App\Models\WeatherStation  $weatherStation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PowerGrid $powerGrid)
+    public function destroy(WeatherStation $weatherStation)
     {
         //
     }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\BatteryVoltage;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,13 +17,14 @@ class BatteryVoltageSeeder extends Seeder
     public function run()
     {
         for ($i = 0; $i < 100; $i++) {
+            $value = 10*$i;
             BatteryVoltage::create([
-                'max' => $i + 10,
-                'min' => $i - 10,
+                'max' => $value + 10,
+                'min' => $value - 10,
                 'deviation' => $i * 2 / 3,
-                'average' => $i * 3 / 2,
+                'average' => $value,
                 'count' => $i,
-                'status' => true
+                'created_at' => Carbon::now()->addHour($i)
             ]);
         }
     }

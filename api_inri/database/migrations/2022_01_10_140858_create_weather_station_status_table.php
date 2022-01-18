@@ -13,7 +13,7 @@ class CreatePowerGridsTable extends Migration
      */
     public function up()
     {
-        Schema::create('power_grid_status', function (Blueprint $table) {
+        Schema::create('weather_station_status', function (Blueprint $table) {
             $table->id();
             $table->boolean('status');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreatePowerGridsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('power_grid_status');
+        Schema::dropIfExists('weather_station_status');
     }
 }

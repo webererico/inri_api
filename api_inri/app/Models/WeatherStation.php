@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PowerGrid extends Model
+class WeatherStation extends Model
 {
     use HasFactory;
-    protected $table = 'power_grid_status';
+    protected $table = 'weather_station_status';
 
     public $fillable = [
         'status'

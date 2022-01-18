@@ -20,7 +20,6 @@ class CreateTotalEnergiesTable extends Migration
             $table->double('deviation', 8, 2);
             $table->double('average', 8, 2);
             $table->integer('count');
-            $table->boolean('status');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Power;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class PowerSeeder extends Seeder
@@ -21,7 +22,8 @@ class PowerSeeder extends Seeder
                 'deviation' => $i * 4 / 5,
                 'average' => $i * 5 / 4,
                 'count' => $i,
-                'status' => true
+                'status' => true,
+                'created_at'=>Carbon::now()->addHour($i) 
             ]);
         }
     }
