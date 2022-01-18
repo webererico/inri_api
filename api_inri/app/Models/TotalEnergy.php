@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TotalEnergy extends Model
 {
     use HasFactory;
+    protected $table = 'cumulated_total_energy';
     public $fillable = [
         'max',
         'min',

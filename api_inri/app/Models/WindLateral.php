@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class WindLateral extends Model
 {
     use HasFactory;
+    protected $table = 'wind_speed_lateral';
     public $fillable = [
         'max',
         'min',

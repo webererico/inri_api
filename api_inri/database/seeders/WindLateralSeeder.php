@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\WindLateral;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class WindLateralSeeder extends Seeder
@@ -14,14 +15,27 @@ class WindLateralSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 100; $i++) {
+
+        $randon = array();
+        for ($i = 0; $i < 2000; $i++) {
+            for ($e = 0; $e < 60; $e++) {
+                array_push($randon, mt_rand(10, 20));
+            }
+
+            $max = max($randon);
+            $min = min($randon);
+            $average = array_sum($randon) / count($randon);
+            $deviation = stand_deviation($randon);
+            $randon  = [];
+
             WindLateral::create([
-                'max' => $i + 60,
-                'min' => $i - 70,
-                'deviation' => $i * 5,
-                'average' => $i / 3 ,
-                'count' => $i,
-                'status' => true
+                'max' => $max,
+                'min' => $min,
+                'deviation' => $deviation,
+                'average' => $average,
+                'count' => 60,
+                'status' => true,
+                'created_at' => Carbon::now()->addMinute($i)
             ]);
         }
     }

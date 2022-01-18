@@ -10,7 +10,9 @@ class Inversor extends Model
     use HasFactory;
     protected $table = 'inversor_status';
     public $fillable = [
-        'status'
+        'description',
+        'id',
+        'status_id'
     ];
 
     protected $hidden = array('id');

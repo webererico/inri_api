@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/power', [PowerController::class, 'index']);
     Route::get('/energy', [TotalEnergyController::class, 'index']);
     Route::get('/status', [DashboardController::class, 'status']);
+    Route::get('/export', [DashboardController::class, 'export']);
 });
 
 

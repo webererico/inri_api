@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\PowerGrid;
+use App\Models\WeatherStation;
 use Illuminate\Database\Seeder;
 
-class PowerGridSeeder extends Seeder
+class WeatherStationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,15 +14,17 @@ class PowerGridSeeder extends Seeder
      */
     public function run()
     {
+        
         for ($i = 0; $i < 100; $i++) {
             if ($i % 2 == 0) {
                 $status = true;
             } else {
                 $status = false;
             }
-            PowerGrid::create([
+            WeatherStation::create([
                 'status' => $status,
             ]);
         }
     }
 }
+

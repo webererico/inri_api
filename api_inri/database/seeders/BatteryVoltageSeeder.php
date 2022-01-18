@@ -16,16 +16,52 @@ class BatteryVoltageSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 100; $i++) {
-            $value = 10*$i;
+        $rand = 0;
+        $rand1 = 0;
+        for ($i = 0; $i < 2000; $i++) {
+
+            if ($i < 200) {
+                $rand = mt_rand(8, 13.5);
+                $rand1 = mt_rand(8, 13.5);
+            } else if (($i > 200 && $i < 700)) {
+                $rand = mt_rand(10, 12.0);
+                $rand1 = mt_rand(10, 12.0);
+            } else {
+                $rand = mt_rand(12, 13.5);
+                $rand1 = mt_rand(12, 13.5);
+            }
+            $max = $rand > $rand1 ? $rand : $rand1;
+            $min = $rand < $rand1 ? $rand : $rand1;
+            $average = ($max + $min) / 2;
+            $deviation = stand_deviation([$rand, $rand1]);
+
+
             BatteryVoltage::create([
-                'max' => $value + 10,
-                'min' => $value - 10,
-                'deviation' => $i * 2 / 3,
-                'average' => $value,
-                'count' => $i,
-                'created_at' => Carbon::now()->addHour($i)
+                'max' => $max,
+                'min' => $min,
+                'deviation' => $deviation,
+                'average' => $average,
+                'count' => 60,
+                'created_at' => Carbon::now()->addMinute($i)
             ]);
         }
     }
+}
+function stand_deviation($arr)
+{
+    $num_of_elements = count($arr);
+
+    $variance = 0.0;
+
+    // calculating mean using array_sum() method
+    $average = array_sum($arr) / $num_of_elements;
+
+    foreach ($arr as $i) {
+        // sum of squares of differences between 
+        // all numbers and means.
+        $value = $i * 1.0;
+        $variance = $variance + pow(($i - $average), 2);
+    }
+
+    return (float)sqrt($variance / $num_of_elements);
 }

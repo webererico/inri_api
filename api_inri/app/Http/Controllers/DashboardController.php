@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\BatteryVoltage;
 use App\Models\Power;
+use App\Models\TotalEnergy;
+use App\Models\WindLateral;
+use App\Models\WindTop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,6 +40,39 @@ class DashboardController extends Controller
                 'inversor_status' => $inversor,
                 'power_grid_status' => $power_grid
             ]
+        ]);
+    }
+
+    public function export(Request $request)
+    {
+
+        $tableName = $request['variable_name'];
+        $startDate = $request['start_date'];
+        $endDate = $request['end_date'];
+        $data = [];
+        switch ($tableName) {
+            case $tableName == 'Battery Voltage':
+                $data = BatteryVoltage::whereBetween('created_at', [$startDate, $endDate])->get();;
+                break;
+            case $tableName == 'Wind Speed Lateral':
+                $data = WindLateral::whereBetween('created_at', [$startDate, $endDate])->get();;
+                break;
+            case $tableName == 'Wind Speed Top':
+                $data = WindTop::whereBetween('created_at', [$startDate, $endDate])->get();;
+                break;
+                // case $tableName == 'Wind Direction':
+                // $data = WindTop::whereBetween('created_at', [$startDate, $endDate])->get();
+                break;
+            case $tableName == 'Total Acumulated Energy':
+                $data = TotalEnergy::whereBetween('created_at', [$startDate, $endDate])->get();;
+                break;
+            case $tableName == 'Measured Power':
+                $data = Power::whereBetween('created_at', [$startDate, $endDate])->get();;
+                break;
+        }
+        return response()->json([
+            'data' => $data,
+            'count' => count($data) > 0  ? count($data) : 0
         ]);
     }
 }

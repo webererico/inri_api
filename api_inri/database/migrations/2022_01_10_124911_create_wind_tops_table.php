@@ -13,7 +13,7 @@ class CreateWindTopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('wind_tops', function (Blueprint $table) {
+        Schema::create('wind_speed_top', function (Blueprint $table) {
             $table->id();
             $table->double('max', 8, 2);
             $table->double('min', 8, 2);
@@ -32,6 +32,6 @@ class CreateWindTopsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wind_tops');
+        Schema::dropIfExists('wind_speed_top');
     }
 }

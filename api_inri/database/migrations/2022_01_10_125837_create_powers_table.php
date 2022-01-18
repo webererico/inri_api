@@ -13,7 +13,7 @@ class CreatePowersTable extends Migration
      */
     public function up()
     {
-        Schema::create('powers', function (Blueprint $table) {
+        Schema::create('measured_power', function (Blueprint $table) {
             $table->id();
             $table->double('max', 8, 2);
             $table->double('min', 8, 2);
@@ -21,6 +21,10 @@ class CreatePowersTable extends Migration
             $table->double('average', 8, 2);
             $table->integer('count');
             $table->timestamps();
+        });
+
+        Schema::table('measured_power', function (Blueprint $table) {
+            $table->foreignId('status_id')->constrained('inversor_status');
         });
     }
 
@@ -31,6 +35,6 @@ class CreatePowersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('powers');
+        Schema::dropIfExists('measured_power');
     }
 }

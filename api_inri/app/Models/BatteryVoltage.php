@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BatteryVoltage extends Model
 {
     use HasFactory;
+    protected $table = 'battery_voltage';
     public $fillable = [
         'max',
         'min',

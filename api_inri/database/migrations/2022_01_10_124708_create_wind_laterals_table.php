@@ -13,13 +13,14 @@ class CreateWindLateralsTable extends Migration
      */
     public function up()
     {
-        Schema::create('wind_laterals', function (Blueprint $table) {
+        Schema::create('wind_speed_lateral', function (Blueprint $table) {
             $table->id();
             $table->double('max', 8, 2);
             $table->double('min', 8, 2);
             $table->double('deviation', 8, 2);
             $table->double('average', 8, 2);
             $table->integer('count');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateWindLateralsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wind_laterals');
+        Schema::dropIfExists('wind_speed_lateral');
     }
 }

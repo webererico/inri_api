@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\WindTop;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class WindTopSeeder extends Seeder
@@ -14,15 +15,46 @@ class WindTopSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 100; $i++) {
+        $randon = array();
+        for ($i = 0; $i < 2000; $i++) {
+            for ($e = 0; $e < 60; $e++) {
+                array_push($randon, mt_rand(20, 30));
+            }
+
+            $max = max($randon);
+            $min = min($randon);
+            $average = array_sum($randon) / count($randon);
+            $deviation = stand_deviation($randon);
+            $randon  = [];
+
             WindTop::create([
-                'max' => $i + 20,
-                'min' => $i - 21,
-                'deviation' => $i * 4 / 5,
-                'average' => $i * 5 / 4,
-                'count' => $i,
-                'status' => true
+                'max' => $max,
+                'min' => $min,
+                'deviation' => $deviation,
+                'average' => $average,
+                'count' => 60,
+                'status' => true,
+                'created_at' => Carbon::now()->addMinute($i)
             ]);
         }
+    }
+
+    private function stand_deviation($arr)
+    {
+        $num_of_elements = count($arr);
+
+        $variance = 0.0;
+
+        // calculating mean using array_sum() method
+        $average = array_sum($arr) / $num_of_elements;
+
+        foreach ($arr as $i) {
+            // sum of squares of differences between 
+            // all numbers and means.
+            $value = $i * 1.0;
+            $variance = $variance + pow(($i - $average), 2);
+        }
+
+        return (float)sqrt($variance / $num_of_elements);
     }
 }

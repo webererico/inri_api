@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Inversor;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class InversorSeeder extends Seeder
 {
@@ -14,171 +15,176 @@ class InversorSeeder extends Seeder
      */
     public function run()
     {
-        Inversor::create(
+        $data = [
             [
-                'status' => 0,
+                'status_id' => 0,
                 'description' => 'Sending Paramenters',
             ],
             [
-                'status' => 1,
+                'status_id' => 1,
                 'description' => 'Wait Sun/Grid',
             ],
             [
-                'status' => 2,
+                'status_id' => 2,
                 'description' => 'Checking Grid',
             ],
             [
-                'status' => 3,
+                'status_id' => 3,
                 'description' => 'Measuring Riso ',
             ],
             [
-                'status' => 4,
+                'status_id' => 4,
                 'description' => 'DcDc Start',
             ],
             [
-                'status' => 5,
+                'status_id' => 5,
                 'description' => 'Inverter Start',
             ],
             [
-                'status' => 6,
+                'status_id' => 6,
                 'description' => 'Run',
             ],
             [
-                'status' => 7,
+                'status_id' => 7,
                 'description' => 'Recovery',
             ],
             [
-                'status' => 8,
+                'status_id' => 8,
                 'description' => 'Pause',
             ],
             [
-                'status' => 9,
+                'status_id' => 9,
                 'description' => 'OTH Fault',
             ],
             [
-                'status' => 10,
+                'status_id' => 10,
                 'description' => 'OTH Fault',
             ],
             [
-                'status' => 11,
+                'status_id' => 11,
                 'description' => 'Address Setting ',
             ],
             [
-                'status' => 12,
+                'status_id' => 12,
                 'description' => 'Self Test ',
             ],
             [
-                'status' => 13,
+                'status_id' => 13,
                 'description' => 'Self Test Fail ',
             ],
             [
-                'status' => 14,
+                'status_id' => 14,
                 'description' => 'Sensor Test + Meas.Riso ',
             ],
             [
-                'status' => 15,
+                'status_id' => 15,
                 'description' => 'Leak Fault ',
             ],
             [
-                'status' => 16,
+                'status_id' => 16,
                 'description' => 'Waiting for manual reset',
             ],
             [
-                'status' => 17,
+                'status_id' => 17,
                 'description' => 'Internal Error E026 ',
             ],
             [
-                'status' => 18,
+                'status_id' => 18,
                 'description' => 'Internal Error E027',
             ],
             [
-                'status' => 19,
+                'status_id' => 19,
                 'description' => 'Internal Error E028 ',
             ],
             [
-                'status' => 20,
+                'status_id' => 20,
                 'description' => 'Internal Error E029',
             ],
             [
-                'status' => 21,
+                'status_id' => 21,
                 'description' => 'Internal Error E030 ',
             ],
             [
-                'status' => 22,
+                'status_id' => 22,
                 'description' => 'Sending Wind Table',
             ],
             [
-                'status' => 23,
+                'status_id' => 23,
                 'description' => 'Failed Sending table',
             ],
             [
-                'status' => 24,
+                'status_id' => 24,
                 'description' => 'UTH Fault',
             ],
             [
-                'status' => 25,
+                'status_id' => 25,
                 'description' => 'Remote OFF',
             ],
             [
-                'status' => 26,
+                'status_id' => 26,
                 'description' => 'Interlock Fail',
             ],
             [
-                'status' => 27,
+                'status_id' => 27,
                 'description' => 'Executing Autotest',
             ],
             [
-                'status' => 30,
+                'status_id' => 30,
                 'description' => 'Waiting Sun',
             ],
             [
-                'status' => 31,
+                'status_id' => 31,
                 'description' => 'Temperature Fault',
             ],
             [
-                'status' => 32,
+                'status_id' => 32,
                 'description' => 'Fan Staucked',
             ],
             [
-                'status' => 33,
+                'status_id' => 33,
                 'description' => 'Int. Com. Fault',
             ],
             [
-                'status' => 34,
+                'status_id' => 34,
                 'description' => 'Slave Insertion',
             ],
             [
-                'status' => 35,
+                'status_id' => 35,
                 'description' => 'DC Switch Open',
             ],
             [
-                'status' => 36,
+                'status_id' => 36,
                 'description' => 'TRAS Switch Open',
             ],
             [
-                'status' => 37,
+                'status_id' => 37,
                 'description' => 'MASTER Exclusion',
             ],
             [
-                'status' => 38,
+                'status_id' => 38,
                 'description' => 'Auto Exclusion',
             ],
             [
-                'status' => 98,
+                'status_id' => 98,
                 'description' => 'Erasing Internal EEprom',
             ],
             [
-                'status' => 99,
+                'status_id' => 99,
                 'description' => 'Erasing External EEprom',
             ],
             [
-                'status' => 100,
+                'status_id' => 100,
                 'description' => 'Counting EEprom',
             ],
             [
-                'status' => 101,
+                'status_id' => 101,
                 'description' => 'Freeze',
             ],
-        );
+        ];
+        DB::table('inversor_status')->delete();
+
+        foreach ($data as $key) {
+            Inversor::create($key);
+        }
     }
 }

@@ -17,15 +17,19 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'Érico Rosiski Weber',
-            'email' => 'ericoweber@hotmail.com',
-            'occupation' => 'Student',
-            'contact_number' => '+55 991344031',
-            'course' => 'Engineering',
-            'password' => Hash::make('ericoweber'),
-            'is_admin' => true,
-        ]);
+        $user = User::where('email', '=', 'ericoweber@hotmail.com')->first();
+        if ($user == null) {
+            User::create([
+                'name' => 'Érico Rosiski Weber',
+                'email' => 'ericoweber@hotmail.com',
+                'occupation' => 'Student',
+                'contact_number' => '+55 991344031',
+                'course' => 'Engineering',
+                'password' => Hash::make('ericoweber'),
+                'is_admin' => true,
+            ]);
+        }
+
         for ($i = 0; $i < 25; $i++) {
             User::create([
                 'name' => Str::random(10),
