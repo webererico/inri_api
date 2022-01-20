@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PowerController;
 use App\Http\Controllers\TotalEnergyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WindDirectionController;
 use App\Http\Controllers\WindLateralController;
 use App\Http\Controllers\WindTopController;
 use Illuminate\Http\Request;
@@ -39,6 +40,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/admin/users', [AdminController::class, 'index']);
     Route::get('/wind/top', [WindTopController::class, 'index']);
     Route::get('/wind/lateral', [WindLateralController::class, 'index']);
+    Route::get('/wind/direction', [WindDirectionController::class, 'index']);
     Route::get('/power', [PowerController::class, 'index']);
     Route::get('/energy', [TotalEnergyController::class, 'index']);
     Route::get('/status', [DashboardController::class, 'status']);

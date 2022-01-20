@@ -14,18 +14,19 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $batteryVoltage = DB::table('battery_voltages')->orderBy('id', 'DESC')->first();;
-        $power = DB::table('powers')->orderBy('id', 'DESC')->first();
-        $windLateral = DB::table('wind_laterals')->orderBy('id', 'DESC')->first();
-        $windTop = DB::table('wind_tops')->orderBy('id', 'DESC')->first();
-        $totalEnergy = DB::table('total_energies')->orderBy('id', 'DESC')->first();
-
+        $batteryVoltage = DB::table('battery_voltage')->orderBy('id', 'DESC')->first();;
+        $power = DB::table('measured_power')->orderBy('id', 'DESC')->first();
+        $windLateral = DB::table('wind_speed_lateral')->orderBy('id', 'DESC')->first();
+        $windTop = DB::table('wind_speed_top')->orderBy('id', 'DESC')->first();
+        $totalEnergy = DB::table('cumulated_total_energy')->orderBy('id', 'DESC')->first();
+        $windDirection = DB::table('wind_direction')->orderBy('id', 'DESC')->first();
         return response()->json([
             'data' => [
                 'battery_voltage' => $batteryVoltage,
                 'power' => $power,
                 'wind_top' => $windTop,
                 'wind_lateral' => $windLateral,
+                'wind_direction' => $windDirection,
                 'total_energy' => $totalEnergy
             ]
         ]);
@@ -34,7 +35,7 @@ class DashboardController extends Controller
     public function status()
     {
         $inversor = DB::table('inversor_status')->orderBy('id', 'DESC')->first();
-        $power_grid = DB::table('power_grid_status')->orderBy('id', 'DESC')->first();
+        $power_grid = DB::table('weather_station_status')->orderBy('id', 'DESC')->first();
         return response()->json([
             'data' => [
                 'inversor_status' => $inversor,

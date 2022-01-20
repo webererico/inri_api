@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\WindLateral;
+use App\Models\WindDirection;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class WindLateralController extends Controller
+class WindDirectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +19,9 @@ class WindLateralController extends Controller
         if ($request['start_date'] != null && $request['end_date'] != null) {
             $start = Carbon::parse($request['start_date']);
             $end = Carbon::parse($request['end_date']);
-            $data = WindLateral::whereBetween('created_at', [$start, $end])->get();
+            $data = WindDirection::whereBetween('created_at', [$start, $end])->get();
         } else {
-            $data = WindLateral::all()->take(-$limit);
+            $data = WindDirection::all()->take(-$limit);
         }
 
         return response()->json([
@@ -54,10 +54,10 @@ class WindLateralController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\WindLateral  $windLateral
+     * @param  \App\Models\WindDirection  $windDirection
      * @return \Illuminate\Http\Response
      */
-    public function show(WindLateral $windLateral)
+    public function show(WindDirection $windDirection)
     {
         //
     }
@@ -65,10 +65,10 @@ class WindLateralController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\WindLateral  $windLateral
+     * @param  \App\Models\WindDirection  $windDirection
      * @return \Illuminate\Http\Response
      */
-    public function edit(WindLateral $windLateral)
+    public function edit(WindDirection $windDirection)
     {
         //
     }
@@ -77,10 +77,10 @@ class WindLateralController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\WindLateral  $windLateral
+     * @param  \App\Models\WindDirection  $windDirection
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WindLateral $windLateral)
+    public function update(Request $request, WindDirection $windDirection)
     {
         //
     }
@@ -88,10 +88,10 @@ class WindLateralController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\WindLateral  $windLateral
+     * @param  \App\Models\WindDirection  $windDirection
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WindLateral $windLateral)
+    public function destroy(WindDirection $windDirection)
     {
         //
     }

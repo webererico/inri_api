@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\BatteryVoltage;
+use App\Models\WindDirection;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class BatteryVoltageSeeder extends Seeder
+class WindDirectionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,7 +18,7 @@ class BatteryVoltageSeeder extends Seeder
         $randon = array();
         for ($i = 0; $i < 2000; $i++) {
             for ($e = 0; $e < 60; $e++) {
-                array_push($randon, mt_rand(0, 13));
+                array_push($randon, mt_rand(50, 60));
             }
 
             $max = max($randon);
@@ -28,33 +27,16 @@ class BatteryVoltageSeeder extends Seeder
             $deviation = stand_deviation($randon);
             $randon  = [];
 
-
-            BatteryVoltage::create([
+            WindDirection::create([
                 'max' => $max,
                 'min' => $min,
                 'deviation' => $deviation,
                 'average' => $average,
                 'count' => 60,
+                'status' => true,
                 'created_at' => Carbon::now()->addMinute($i)
             ]);
         }
+    
     }
-}
-function stand_deviation($arr)
-{
-    $num_of_elements = count($arr);
-
-    $variance = 0.0;
-
-    // calculating mean using array_sum() method
-    $average = array_sum($arr) / $num_of_elements;
-
-    foreach ($arr as $i) {
-        // sum of squares of differences between 
-        // all numbers and means.
-        $value = $i * 1.0;
-        $variance = $variance + pow(($i - $average), 2);
-    }
-
-    return (float)sqrt($variance / $num_of_elements);
 }

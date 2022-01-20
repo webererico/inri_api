@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\BatteryVoltage;
 use App\Models\TotalEnergy;
 use App\Models\WeatherStation;
+use App\Models\WindDirection;
 use App\Models\WindLateral;
 use App\Models\WindTop;
 use Illuminate\Database\Seeder;
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TotalEnergySeeder::class,
             WeatherStationSeeder::class,
+            WindDirectionSeeder::class,
         ]);
     }
 }
