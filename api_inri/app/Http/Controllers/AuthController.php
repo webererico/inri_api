@@ -48,12 +48,7 @@ class AuthController extends Controller
 
         $user = User::where('email', $request['email'])->firstOrFail();
 
-        // $hasToken = DB::table('personal_access_tokens')->where('tokenable_id', '=', $user->id)->latest()->first();
-        // if ($hasToken != null) {
-        //     $token = $hasToken->token->plainTextToken;
-        // } else {
-            $token = $user->createToken('auth_token')->plainTextToken;
-        // }
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'access_token' => $token,
