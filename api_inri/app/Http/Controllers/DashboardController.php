@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\BatteryVoltage;
+use App\Models\Inversor;
 use App\Models\Power;
 use App\Models\TotalEnergy;
+use App\Models\User;
 use App\Models\WindLateral;
 use App\Models\WindTop;
 use Illuminate\Http\Request;
@@ -34,12 +36,13 @@ class DashboardController extends Controller
 
     public function status()
     {
-        $inversor = DB::table('inversor_status')->orderBy('id', 'DESC')->first();
-        $power_grid = DB::table('weather_station_status')->orderBy('id', 'DESC')->first();
+        $power = DB::table('measured_power')->orderBy('id', 'DESC')->first();
+        $inversor = Inversor::find($power->status_id);
+        $station = DB::table('weather_station_status')->orderBy('id', 'DESC')->first();
         return response()->json([
             'data' => [
                 'inversor_status' => $inversor,
-                'power_grid_status' => $power_grid
+                'station_status' => $station
             ]
         ]);
     }
@@ -71,6 +74,7 @@ class DashboardController extends Controller
                 $data = Power::whereBetween('created_at', [$startDate, $endDate])->get();;
                 break;
         }
+
         return response()->json([
             'data' => $data,
             'count' => count($data) > 0  ? count($data) : 0

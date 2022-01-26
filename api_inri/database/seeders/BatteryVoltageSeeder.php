@@ -17,9 +17,13 @@ class BatteryVoltageSeeder extends Seeder
     public function run()
     {
         $randon = array();
+        $date = new Carbon('2022-01-25 00:00:00');
         for ($i = 0; $i < 2000; $i++) {
-            for ($e = 0; $e < 60; $e++) {
-                array_push($randon, mt_rand(0, 13));
+            for ($e = 0; $e < 20; $e++) {
+                array_push($randon, mt_rand(5, 13));
+            }
+            for ($e = 0; $e < 40; $e++) {
+                array_push($randon, mt_rand(9, 11.5));
             }
 
             $max = max($randon);
@@ -35,7 +39,7 @@ class BatteryVoltageSeeder extends Seeder
                 'deviation' => $deviation,
                 'average' => $average,
                 'count' => 60,
-                'created_at' => Carbon::now()->addMinute($i)
+                'created_at' => $date->addMinute(1)
             ]);
         }
     }

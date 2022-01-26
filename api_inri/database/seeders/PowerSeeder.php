@@ -18,10 +18,11 @@ class PowerSeeder extends Seeder
     public function run()
     {
         $inversor = DB::table('inversor_status')->where('status_id', '=', 6)->first();
+        $date = new Carbon('2022-01-25 00:00:00');
         $randon = array();
         for ($i = 0; $i < 2000; $i++) {
             for ($e = 0; $e < 60; $e++) {
-                array_push($randon, mt_rand(60, 70 + $i));
+                array_push($randon, mt_rand(60, 70));
             }
             $max = max($randon);
             $min = min($randon);
@@ -36,7 +37,7 @@ class PowerSeeder extends Seeder
                 'average' => $average,
                 'count' => 60,
                 'status_id' => $inversor->id,
-                'created_at' => Carbon::now()->addMinute($i)
+                'created_at' =>$date->addMinute(1)
             ]);
         }
     }

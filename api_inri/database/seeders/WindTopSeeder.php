@@ -16,6 +16,8 @@ class WindTopSeeder extends Seeder
     public function run()
     {
         $randon = array();
+        $date = new Carbon('2022-01-25 00:00:00');
+
         for ($i = 0; $i < 2000; $i++) {
             for ($e = 0; $e < 60; $e++) {
                 array_push($randon, mt_rand(20, 30));
@@ -34,7 +36,7 @@ class WindTopSeeder extends Seeder
                 'average' => $average,
                 'count' => 60,
                 'status' => true,
-                'created_at' => Carbon::now()->addMinute($i)
+                'created_at' => $date->addMinute(1)
             ]);
         }
     }

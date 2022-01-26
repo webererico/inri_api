@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BatteryVoltage;
 use App\Models\Inverso;
+use App\Models\Inversor;
+use App\Models\Power;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class InversoController extends Controller
@@ -12,9 +16,32 @@ class InversoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $limit = $request['limit'] ?? 1440;
+        if ($request['start_date'] != null && $request['end_date'] != null) {
+            $start = Carbon::parse($request['start_date']);
+            $end = Carbon::parse($request['end_date']);
+            $data = Power::whereBetween('created_at', [$start, $end])->pluck('status_id')->get();
+        } else {
+            $data = Power::all()->take(-$limit);
+        }
+
+        $status = [];
+        foreach ($data as $value) {
+            $newValue  = array(
+                "status" => true,
+                "description" => Inversor::find($value->status_id)->description,
+                "created_at" => $value->created_at,
+                "updated_at" => $value->update_at
+            );
+            array_push($status, $newValue);
+        }
+
+        return response()->json([
+            'data' => $status,
+            'count' => count($data) > 0  ? count($data) : 0
+        ]);
     }
 
     /**
@@ -44,7 +71,7 @@ class InversoController extends Controller
      * @param  \App\Models\Inverso  $inverso
      * @return \Illuminate\Http\Response
      */
-    public function show(Inverso $inverso)
+    public function show(Inversor $inverso)
     {
         //
     }
@@ -55,7 +82,7 @@ class InversoController extends Controller
      * @param  \App\Models\Inverso  $inverso
      * @return \Illuminate\Http\Response
      */
-    public function edit(Inverso $inverso)
+    public function edit(Inversor $inverso)
     {
         //
     }
@@ -67,7 +94,7 @@ class InversoController extends Controller
      * @param  \App\Models\Inverso  $inverso
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Inverso $inverso)
+    public function update(Request $request, Inversor $inverso)
     {
         //
     }
@@ -78,7 +105,7 @@ class InversoController extends Controller
      * @param  \App\Models\Inverso  $inverso
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inverso $inverso)
+    public function destroy(Inversor $inverso)
     {
         //
     }

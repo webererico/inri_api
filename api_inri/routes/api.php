@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BatteryVoltageController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InversoController;
 use App\Http\Controllers\PowerController;
 use App\Http\Controllers\TotalEnergyController;
 use App\Http\Controllers\UserController;
@@ -41,6 +42,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/energy', [TotalEnergyController::class, 'index']);
     Route::get('/status', [DashboardController::class, 'status']);
     Route::get('/export', [DashboardController::class, 'export']);
+    Route::get('/status/inversor', [InversoController::class, 'index']);
 });
 
 

@@ -16,7 +16,7 @@ class PowerController extends Controller
     
     public function index(Request $request)
     {
-        $limit = $request['limit'] ?? 60;
+        $limit = $request['limit'] ?? 1440;
         if ($request['start_date'] != null && $request['end_date'] != null) {
             $start = Carbon::parse($request['start_date']);
             $end = Carbon::parse($request['end_date']);
