@@ -17,7 +17,6 @@ class BatteryVoltageController extends Controller
             $data = BatteryVoltage::whereBetween('created_at', [$start, $end])->take(-$limit)->get();
         } else {
             $data = BatteryVoltage::all()->take(-$limit);
-
         }
 
         return response()->json([
@@ -26,4 +25,14 @@ class BatteryVoltageController extends Controller
         ]);
     }
 
+    public function all(Request $request)
+    {
+
+        $data = BatteryVoltage::all();
+
+        return response()->json([
+            'data' => $data,
+            'count' => count($data) > 0  ? count($data) : 0
+        ]);
+    }
 }

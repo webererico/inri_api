@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WindDirectionController;
 use App\Http\Controllers\WindLateralController;
 use App\Http\Controllers\WindTopController;
+use App\Models\BatteryVoltage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/status', [DashboardController::class, 'status']);
     Route::get('/export', [DashboardController::class, 'export']);
     Route::get('/status/inversor', [InversoController::class, 'index']);
+    Route::get('/battery-voltage/all', [BatteryVoltageController::class, 'all']);
+    
 });
 
 
