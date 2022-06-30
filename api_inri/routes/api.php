@@ -45,7 +45,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/export', [DashboardController::class, 'export']);
     Route::get('/status/inversor', [InversoController::class, 'index']);
     Route::get('/battery-voltage/all', [BatteryVoltageController::class, 'all']);
-    
 });
 
 

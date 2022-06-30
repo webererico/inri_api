@@ -24,18 +24,12 @@ class TotalEnergySeeder extends Seeder
             for ($e = 0; $e < 60; $e++) {
                 array_push($randon, mt_rand(10 + $i, 20 + $i));
             }
-            $max = max($randon);
-            $min = min($randon);
-            $average = array_sum($randon) / count($randon);
-            $deviation = stand_deviation($randon);
+            
+            $value = array_sum($randon) / count($randon);
             $randon  = [];
 
             TotalEnergy::create([
-                'max' => $max,
-                'min' => $min,
-                'deviation' => $deviation,
-                'average' => $average,
-                'count' => 60,
+                'value' => $value,
                 'status_id' => $inversor->id,
                 'created_at' => $date->addMinute(1)
             ]);

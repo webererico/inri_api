@@ -15,8 +15,6 @@ class CreateWindDirectionsTable extends Migration
     {
         Schema::create('wind_direction', function (Blueprint $table) {
             $table->id();
-            $table->double('max', 8, 2);
-            $table->double('min', 8, 2);
             $table->double('deviation', 8, 2);
             $table->double('average', 8, 2);
             $table->integer('count');

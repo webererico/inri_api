@@ -10,8 +10,6 @@ class WindDirection extends Model
     use HasFactory;
     protected $table = 'wind_direction';
     public $fillable = [
-        'max',
-        'min',
         'average',
         'deviation',
         'count',

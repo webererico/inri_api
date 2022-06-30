@@ -17,9 +17,7 @@ class CreateBatteryVoltagesTable extends Migration
             $table->id();
             $table->double('max', 8, 2);
             $table->double('min', 8, 2);
-            $table->double('deviation', 8, 2);
             $table->double('average', 8, 2);
-            $table->integer('count');
             $table->timestamps();
         });
     }

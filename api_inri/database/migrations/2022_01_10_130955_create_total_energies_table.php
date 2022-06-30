@@ -13,17 +13,13 @@ class CreateTotalEnergiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cumulated_total_energy', function (Blueprint $table) {
+        Schema::create('total_energy', function (Blueprint $table) {
             $table->id();
-            $table->double('max', 8, 2);
-            $table->double('min', 8, 2);
-            $table->double('deviation', 8, 2);
-            $table->double('average', 8, 2);
-            $table->integer('count');
+            $table->double('value', 8, 2);
             $table->timestamps();
         });
 
-        Schema::table('cumulated_total_energy', function (Blueprint $table) {
+        Schema::table('total_energy', function (Blueprint $table) {
             $table->foreignId('status_id')->constrained('inversor_status');
 
         });
@@ -36,6 +32,6 @@ class CreateTotalEnergiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cumulated_total_energy');
+        Schema::dropIfExists('total_energy');
     }
 }

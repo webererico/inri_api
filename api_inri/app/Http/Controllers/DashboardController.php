@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $power = DB::table('measured_power')->orderBy('id', 'DESC')->first();
         $windLateral = DB::table('wind_speed_lateral')->orderBy('id', 'DESC')->first();
         $windTop = DB::table('wind_speed_top')->orderBy('id', 'DESC')->first();
-        $totalEnergy = DB::table('cumulated_total_energy')->orderBy('id', 'DESC')->first();
+        $totalEnergy = DB::table('total_energy')->orderBy('id', 'DESC')->first();
         $windDirection = DB::table('wind_direction')->orderBy('id', 'DESC')->first();
         return response()->json([
             'data' => [

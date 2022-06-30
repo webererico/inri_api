@@ -13,8 +13,6 @@ class BatteryVoltage extends Model
         'max',
         'min',
         'average',
-        'deviation',
-        'count',
         'status',
         'created_at'
     ];

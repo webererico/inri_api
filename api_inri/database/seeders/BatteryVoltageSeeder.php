@@ -16,32 +16,29 @@ class BatteryVoltageSeeder extends Seeder
      */
     public function run()
     {
-        $randon = array();
-        $date = new Carbon('2022-01-25 00:00:00');
-        for ($i = 0; $i < 2000; $i++) {
-            for ($e = 0; $e < 20; $e++) {
-                array_push($randon, mt_rand(5, 13));
-            }
-            for ($e = 0; $e < 40; $e++) {
-                array_push($randon, mt_rand(9, 11.5));
-            }
+        // $randon = array();
+        // $date = new Carbon('2022-01-25 00:00:00');
+        // for ($i = 0; $i < 2000; $i++) {
+        //     for ($e = 0; $e < 20; $e++) {
+        //         array_push($randon, mt_rand(5, 13));
+        //     }
+        //     for ($e = 0; $e < 40; $e++) {
+        //         array_push($randon, mt_rand(9, 11.5));
+        //     }
 
-            $max = max($randon);
-            $min = min($randon);
-            $average = array_sum($randon) / count($randon);
-            $deviation = stand_deviation($randon);
-            $randon  = [];
+        //     $max = max($randon);
+        //     $min = min($randon);
+        //     $average = array_sum($randon) / count($randon);
+        //     $randon  = [];
 
 
-            BatteryVoltage::create([
-                'max' => $max,
-                'min' => $min,
-                'deviation' => $deviation,
-                'average' => $average,
-                'count' => 60,
-                'created_at' => $date->addMinute(1)
-            ]);
-        }
+        //     BatteryVoltage::create([
+        //         'max' => $max,
+        //         'min' => $min,
+        //         'average' => $average,
+        //         'created_at' => $date->addMinute(1)
+        //     ]);
+        // }
     }
 }
 function stand_deviation($arr)
